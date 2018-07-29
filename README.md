@@ -1,0 +1,2 @@
+# encrubto
+Ruby encryption library
