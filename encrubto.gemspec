@@ -6,12 +6,12 @@ require "encrubto/version"
 Gem::Specification.new do |spec|
   spec.name          = "encrubto"
   spec.version       = Encrubto::VERSION
-  spec.authors       = ["TODO: Write your name"]
-  spec.email         = ["TODO: Write your email address"]
+  spec.authors       = ["Mark Torok"]
+  spec.email         = ["torokmark@gmx.com"]
 
-  spec.summary       = %q{TODO: Write a short summary, because RubyGems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = %q{Encryption library}
+  spec.description   = %q{Ruby library intended to provide encryption algorithms.}
+  spec.homepage      = "https://github.com/torokmark/encrubto"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
@@ -33,6 +33,6 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_development_dependency "bundler", "~> 1.16"
-  spec.add_development_dependency "rake", "~> 10.0"
-  spec.add_development_dependency "rspec", "~> 3.0"
+  spec.add_development_dependency "rake", "~> 12.3.1"
+  spec.add_development_dependency "rspec", "~> 3.7"
 end
