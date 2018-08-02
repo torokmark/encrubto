@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+
+require 'encrubto'
+
+encrypted = Encrubto::Rot13.encrypt("apple")
+decrypted = Encrubto::Rot13.decrypt(encrypted)
+
+puts "Encrypted string 'apple' in Rot13: #{ encrypted }"
+puts "Encrypted string 'apple' in Rot13: #{ decrypted }"
+
