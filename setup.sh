@@ -5,4 +5,4 @@ rbenv local 2.5.0
 
 gem install bundler
 
-# bundle gem encrubto
+bundle install
