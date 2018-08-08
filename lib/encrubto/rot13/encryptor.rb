@@ -1,12 +1,12 @@
 
 module Encrubto::Rot13
-  module Helper
+  class Encryptor 
   
-    def self.encrypt(str)
+    def encrypt(str)
       if str.is_a? String
         str.chars.map { |c|
           if ('a'..'z').include? c
-            
+                 
           elsif ('A'..'Z').include? c
             
           else
@@ -18,7 +18,7 @@ module Encrubto::Rot13
       end
     end
 
-    def self.decrypt(encrypted)
+    def decrypt(encrypted)
       puts "hola"
     end
   end
