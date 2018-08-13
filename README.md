@@ -27,7 +27,7 @@ Or install it yourself as:
 require 'encrubto'
 
 encrypted_str = Encrubto::Rot13.encrypt('apple')
-decrypted_str = Encrubto::Rot13.decrypt('encrypted_str')
+decrypted_str = Encrubto::Rot13.decrypt(encrypted_str)
 
 puts "#{ encrypted_str } == #{ decrypted_str }"
 ```
