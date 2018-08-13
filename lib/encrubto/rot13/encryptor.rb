@@ -2,24 +2,22 @@
 module Encrubto::Rot13
   class Encryptor 
   
+    ORI = 'abcdefghijklmnopqrstuvwxyz'
+    ROT = 'nopqrstuvwxyzabcdefghijklm'
     def encrypt(str)
       if str.is_a? String
-        str.chars.map { |c|
-          if ('a'..'z').include? c
-                 
-          elsif ('A'..'Z').include? c
-            
-          else
-            c
-          end
-        }
+        str.tr("#{ ORI }#{ ORI.upcase }", "#{ ROT }#{ ROT.upcase }")
       else
         raise 'Param must be String!'
       end
     end
 
     def decrypt(encrypted)
-      puts "hola"
+      if encrypted.is_a? String
+        encrypted.tr("#{ ROT }#{ ROT.upcase }", "#{ ORI }#{ ORI.upcase }")
+      else
+        raise 'Param must be String!'
+      end
     end
   end
 end
