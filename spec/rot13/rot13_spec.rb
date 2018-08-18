@@ -20,7 +20,7 @@ RSpec.describe Encrubto::Rot13 do
 
   describe 'call decrypt' do
      it 'returns A if input is N' do
-      expect(Encrubto::Rot13.decrypt('A')).to eq('N')
+      expect(Encrubto::Rot13.decrypt('N')).to eq('A')
     end
 
     it 'returns aPpLe if input is nCcYr' do
