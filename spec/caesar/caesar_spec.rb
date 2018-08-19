@@ -44,19 +44,19 @@ RSpec.describe Encrubto::Caesar do
       end
   
       it 'raises error if number of params is zero' do
-        expect { Encrubto::Caesar.encrypt }.to raise_error(ArgumentError)
+        expect { Encrubto::Caesar.decrypt }.to raise_error(ArgumentError)
       end
 
       it 'raises error if number of params is one' do
-        expect { Encrubto::Caesar.encrypt("A") }.to raise_error(ArgumentError)
+        expect { Encrubto::Caesar.decrypt("A") }.to raise_error(ArgumentError)
       end
   
       it 'raises error if first param is not string' do
-        expect { Encrubto::Caesar.encrypt(1, 10) }.to raise_exception('First param must be String, second param must be Integer!')
+        expect { Encrubto::Caesar.decrypt(1, 10) }.to raise_exception('First param must be String, second param must be Integer!')
       end
 
       it 'raises error if second param is not integer' do
-        expect { Encrubto::Caesar.encrypt("A", "B") }.to raise_exception('First param must be String, second param must be Integer!')
+        expect { Encrubto::Caesar.decrypt("A", "B") }.to raise_exception('First param must be String, second param must be Integer!')
       end
     end
   end

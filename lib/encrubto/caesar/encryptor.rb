@@ -15,7 +15,7 @@ module Encrubto::Caesar
   
       def decrypt(encrypted, offset)
         if ( (encrypted.is_a? String) && (offset.is_a? Integer) )
-            caesar = shift(offset)
+          caesar = shift(offset)
           encrypted.tr("#{ caesar }#{ caesar.to_s.upcase }", "#{ ORIGINAL }#{ ORIGINAL.upcase }")
         else
             raise 'First param must be String, second param must be Integer!'
