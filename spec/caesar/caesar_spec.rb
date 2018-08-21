@@ -28,6 +28,11 @@ RSpec.describe Encrubto::Caesar do
       it 'raises error if second param is not integer' do
         expect { Encrubto::Caesar.encrypt("A", "B") }.to raise_exception('First param must be String, second param must be Integer!')
       end
+
+      it 'raises error if second param is not in the range 0-26' do
+        expect { Encrubto::Caesar.encrypt("A", 123) }.to raise_exception('Offset must be between 0 and 26!')
+      end
+
     end
   
     describe 'call decrypt' do
@@ -57,6 +62,10 @@ RSpec.describe Encrubto::Caesar do
 
       it 'raises error if second param is not integer' do
         expect { Encrubto::Caesar.decrypt("A", "B") }.to raise_exception('First param must be String, second param must be Integer!')
+      end
+
+      it 'raises error if second param is not in the range 0-26' do
+        expect { Encrubto::Caesar.decrypt("A", 123) }.to raise_exception('Offset must be between 0 and 26!')
       end
     end
   end

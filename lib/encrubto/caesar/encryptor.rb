@@ -6,8 +6,12 @@ module Encrubto::Caesar
 
       def encrypt(str, offset)
         if ( (str.is_a? String) && (offset.is_a? Integer) )
-          caesar = shift(offset)
-          str.tr("#{ ORIGINAL }#{ ORIGINAL.upcase }", "#{ caesar }#{ caesar.to_s.upcase }")
+          if(0 <= offset && offset <= 26)
+            caesar = shift(offset)
+            str.tr("#{ ORIGINAL }#{ ORIGINAL.upcase }", "#{ caesar }#{ caesar.to_s.upcase }")
+          else
+            raise 'Offset must be between 0 and 26!'
+          end
         else
           raise 'First param must be String, second param must be Integer!'
         end
@@ -15,8 +19,12 @@ module Encrubto::Caesar
   
       def decrypt(encrypted, offset)
         if ( (encrypted.is_a? String) && (offset.is_a? Integer) )
-          caesar = shift(offset)
-          encrypted.tr("#{ caesar }#{ caesar.to_s.upcase }", "#{ ORIGINAL }#{ ORIGINAL.upcase }")
+          if(0 <= offset && offset <= 26)
+            caesar = shift(offset)
+            encrypted.tr("#{ caesar }#{ caesar.to_s.upcase }", "#{ ORIGINAL }#{ ORIGINAL.upcase }")
+          else
+            raise 'Offset must be between 0 and 26!'
+          end
         else
             raise 'First param must be String, second param must be Integer!'
         end
