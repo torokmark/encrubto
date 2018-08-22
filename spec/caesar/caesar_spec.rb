@@ -1,15 +1,15 @@
 RSpec.describe Encrubto::Caesar do
 
     describe 'call encrypt' do
-      it 'returns B if input is A' do
+      it 'returns B if input is A and 1' do
         expect(Encrubto::Caesar.encrypt('A', 1)).to eq('B')
       end
 
-      it 'returns N if input is A' do
+      it 'returns N if input is A and 13' do
         expect(Encrubto::Caesar.encrypt('A', 13)).to eq('N')
       end
   
-      it 'returns nCcYr if input is aPpLe' do
+      it 'returns nCcYr if input is aPpLe and 13' do
         expect(Encrubto::Caesar.encrypt('aPpLe', 13)).to eq('nCcYr')
       end
   
@@ -36,15 +36,15 @@ RSpec.describe Encrubto::Caesar do
     end
   
     describe 'call decrypt' do
-      it 'returns A if input is B' do
+      it 'returns A if input is B and 1' do
         expect(Encrubto::Caesar.decrypt('B', 1)).to eq('A')
       end
 
-      it 'returns A if input is N' do
+      it 'returns A if input is N and 13' do
         expect(Encrubto::Caesar.decrypt('N', 13)).to eq('A')
       end
   
-      it 'returns aPpLe if input is nCcYr' do
+      it 'returns aPpLe if input is nCcYr and 13' do
         expect(Encrubto::Caesar.decrypt('nCcYr', 13)).to eq('aPpLe')
       end
   
