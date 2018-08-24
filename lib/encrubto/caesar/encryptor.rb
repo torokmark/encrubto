@@ -4,8 +4,8 @@ module Encrubto::Caesar
       ORIGINAL = 'abcdefghijklmnopqrstuvwxyz'
 
       def encrypt(str, offset)
-        if (str.is_a?(String) && offset.is_a?(Integer))
-          if(0 <= offset && offset <= 26)
+        if str.is_a?(String) && offset.is_a?(Integer)
+          if 0 <= offset && offset <= 26
             caesar = shift(offset)
             str.tr("#{ ORIGINAL }#{ ORIGINAL.upcase }", "#{ caesar }#{ caesar.to_s.upcase }")
           else
@@ -17,8 +17,8 @@ module Encrubto::Caesar
       end
   
       def decrypt(encrypted, offset)
-        if (encrypted.is_a?(String) && offset.is_a?(Integer))
-          if(0 <= offset && offset <= 26)
+        if encrypted.is_a?(String) && offset.is_a?(Integer)
+          if 0 <= offset && offset <= 26
             caesar = shift(offset)
             encrypted.tr("#{ caesar }#{ caesar.to_s.upcase }", "#{ ORIGINAL }#{ ORIGINAL.upcase }")
           else
