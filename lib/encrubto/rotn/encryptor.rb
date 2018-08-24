@@ -4,7 +4,7 @@ module Encrubto::RotN
     ORIGINAL = 'abcdefghijklmnopqrstuvwxyz'
 
     def encrypt(str, offset)
-      if (str.is_a?(String) && offset.is_a?(Integer))
+      if str.is_a?(String) && offset.is_a?(Integer)
           rotn = shift(offset % 26)
           str.tr("#{ ORIGINAL }#{ ORIGINAL.upcase }", "#{ rotn }#{ rotn.to_s.upcase }")
       else
@@ -13,7 +13,7 @@ module Encrubto::RotN
     end
 
     def decrypt(encrypted, offset)
-      if (encrypted.is_a?(String) && offset.is_a?(Integer))
+      if encrypted.is_a?(String) && offset.is_a?(Integer)
         rotn = shift(offset % 26)
         encrypted.tr("#{ rotn }#{ rotn.to_s.upcase }", "#{ ORIGINAL }#{ ORIGINAL.upcase }")
       else
