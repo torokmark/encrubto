@@ -22,9 +22,9 @@ module Encrubto::RotN
     end
 
     def shift(offset)
-      firstPart = ORIGINAL[offset..ORIGINAL.length-1]
-      secondPart = ORIGINAL[0..offset-1]
-      rotn = firstPart.to_s + secondPart.to_s
+      first_part = ORIGINAL[offset..ORIGINAL.length-1]
+      second_part = ORIGINAL[0..offset-1]
+      first_part.to_s + second_part.to_s
     end
 
   end
