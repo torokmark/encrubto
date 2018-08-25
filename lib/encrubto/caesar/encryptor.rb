@@ -30,9 +30,9 @@ module Encrubto::Caesar
       end
 
       def shift(offset)
-        caesarFirstPart = ORIGINAL[offset..ORIGINAL.length-1]
-        caesarSecondPart = ORIGINAL[0..offset-1]
-        caesar = caesarFirstPart.to_s + caesarSecondPart.to_s
+        caesar_first_part = ORIGINAL[offset..ORIGINAL.length-1]
+        caesar_second_part = ORIGINAL[0..offset-1]
+        caesar_first_part.to_s + caesar_second_part.to_s
       end
 
     end
