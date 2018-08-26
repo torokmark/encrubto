@@ -13,11 +13,7 @@ module Encrubto::Rot13
     end
 
     def decrypt(encrypted)
-      if encrypted.is_a? String
-        encrypted.tr("#{ ROT }#{ ROT.upcase }", "#{ ORI }#{ ORI.upcase }")
-      else
-        raise 'Param must be String!'
-      end
+      encrypt(encrypted)
     end
   end
 end
