@@ -36,22 +36,11 @@ module Encrubto::Base64
     end
 
     def to_base64(slice)
-      three_bytes = slice[0] << 16 | slice[1] << 8 | slice[2]
-      
-      print((three_bytes).to_s(2))
-        print(" ")
-        print((three_bytes >> 18).to_s(2))
-        print(" ")
-        print((three_bytes >> 12 & 0x3f).to_s(2))
-          print(" ")
-      print((three_bytes >> 6 & 0x3f).to_s(2))
-        print(" ")
-        print((three_bytes & 0x3f).to_s(2))
-
-      four_chars = BASE64[three_bytes >> 18 & 0x3f] + 
-        BASE64[three_bytes >> 12 & 0x3f] + 
-        BASE64[three_bytes >> 6 & 0x3f] + 
-        BASE64[three_bytes & 0x3f]
+      three_bytesytes = slice[0] << 16 | slice[1] << 8 | slice[2]
+      four_chars = BASE64[three_bytesytes >> 18 & 0x3f] + 
+        BASE64[three_bytesytes >> 12 & 0x3f] + 
+        BASE64[three_bytesytes >> 6 & 0x3f] + 
+        BASE64[three_bytesytes & 0x3f]
     end
 
     def decrypt(str)
@@ -66,7 +55,12 @@ module Encrubto::Base64
     end
 
     def from_base64(slice)
-      integer = (BASE64.find_index(slice[0].chr) & 0xff).to_s(2)
+      array = []
+      slice.each {
+        |s| array.push(BASE64.find_index(s.chr))
+      }
+      three_bytes = array[0] << 18 | array[1] << 12 | array[2] << 6 | array[3]
+      result = (three_bytes >> 16 & 0xff).chr + (three_bytes >> 8 & 0xff).chr + (three_bytes & 0xff).chr
     end
 
   end
