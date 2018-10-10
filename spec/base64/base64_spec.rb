@@ -31,6 +31,9 @@ RSpec.describe Encrubto::Base64 do
     it 'returns aaaaaa if input is YWFhYWFh' do
       expect(Encrubto::Base64.decrypt('YWFhYWFh')).to eq('aaaaaa')
     end
+    it 'returns aaaaa if input is YWFhYWE=' do
+      expect(Encrubto::Base64.decrypt('YWFhYWE=')).to eq('aaaaa')
+    end
  end
 
 end

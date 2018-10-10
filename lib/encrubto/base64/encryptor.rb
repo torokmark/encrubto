@@ -36,11 +36,11 @@ module Encrubto::Base64
     end
 
     def to_base64(slice)
-      three_bytesytes = slice[0] << 16 | slice[1] << 8 | slice[2]
-      four_chars = BASE64[three_bytesytes >> 18 & 0x3f] + 
-        BASE64[three_bytesytes >> 12 & 0x3f] + 
-        BASE64[three_bytesytes >> 6 & 0x3f] + 
-        BASE64[three_bytesytes & 0x3f]
+      bits = slice[0] << 16 | slice[1] << 8 | slice[2]
+      chars = BASE64[bits >> 18 & 0x3f] + 
+        BASE64[bits >> 12 & 0x3f] + 
+        BASE64[bits >> 6 & 0x3f] + 
+        BASE64[bits & 0x3f]
     end
 
     def decrypt(str)
@@ -49,7 +49,7 @@ module Encrubto::Base64
       slices = byte_array.each_slice(4).to_a
       slices.each {
         |slice|
-        result = from_base64(slice)
+        result = result + from_base64(slice)
       }
       return result
     end
@@ -57,10 +57,33 @@ module Encrubto::Base64
     def from_base64(slice)
       array = []
       slice.each {
-        |s| array.push(BASE64.find_index(s.chr))
+        |s| 
+        if s.chr != "="
+          array.push(BASE64.find_index(s.chr))
+        else
+          array.push(s)
+        end
       }
-      three_bytes = array[0] << 18 | array[1] << 12 | array[2] << 6 | array[3]
-      result = (three_bytes >> 16 & 0xff).chr + (three_bytes >> 8 & 0xff).chr + (three_bytes & 0xff).chr
+
+      print(array[0].chr)
+      print("\n")
+      print(array[1].chr)
+      print("\n")
+      print(array[2].chr)
+      print("\n")
+      print(array[3].chr)
+     
+      if array[-1].chr == "=" && array[-2].chr == "="
+        bits = array[0] << 6 | array[1]
+      elsif array[-2].chr == "="
+        bits = array[0] << 12 | array[1] << 6 | array[2]
+      else
+        bits = array[0] << 18 | array[1] << 12 | array[2] << 6 | array[3]
+      end
+      # print(bits.to_s(2))
+      chars = (bits >> 16 & 0xff).chr + (bits >> 8 & 0xff).chr + (bits & 0xff).chr
+
+      
     end
 
   end
