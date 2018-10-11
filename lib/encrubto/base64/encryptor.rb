@@ -64,25 +64,22 @@ module Encrubto::Base64
           array.push(s)
         end
       }
-
-      print(array[0].chr)
-      print("\n")
-      print(array[1].chr)
-      print("\n")
-      print(array[2].chr)
-      print("\n")
-      print(array[3].chr)
-     
-      if array[-1].chr == "=" && array[-2].chr == "="
+      
+      if array[2].chr == "=" && array[3].chr == "="
         bits = array[0] << 6 | array[1]
-      elsif array[-2].chr == "="
+        chars = (bits >> 4 & 0xff).chr + (bits & 0x0f).chr
+      elsif array[3].chr == "="
         bits = array[0] << 12 | array[1] << 6 | array[2]
+        chars = (bits >> 10 & 0xff).chr + (bits >> 2 & 0xff).chr + (bits & 0x03).chr
       else
         bits = array[0] << 18 | array[1] << 12 | array[2] << 6 | array[3]
+        chars = (bits >> 16 & 0xff).chr + (bits >> 8 & 0xff).chr + (bits & 0xff).chr
       end
-      # print(bits.to_s(2))
-      chars = (bits >> 16 & 0xff).chr + (bits >> 8 & 0xff).chr + (bits & 0xff).chr
-
+      print(bits.to_s(2))
+      print("\n")
+      print(chars)
+      print("\n")
+      return chars
       
     end
 
