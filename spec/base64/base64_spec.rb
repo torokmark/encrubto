@@ -43,8 +43,8 @@ RSpec.describe Encrubto::Base64 do
     it 'returns 123 if input is MTIz' do
       expect(Encrubto::Base64.decrypt('MTIz')).to eq('123')
     end
-    it 'returns =" if input is PQ==' do
-      expect(Encrubto::Base64.decrypt('PQ==')).to eq('="')
+    it 'returns = if input is PQ==' do
+      expect(Encrubto::Base64.decrypt('PQ==')).to eq('=')
     end
  end
 
