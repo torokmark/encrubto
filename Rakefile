@@ -24,4 +24,4 @@ task :exec do
   system './bin/encrubto'
 end
 
-task :full => [:build, :spec, :install, :exec]
+# task :full => [:build, :spec, :install, :exec]
