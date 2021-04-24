@@ -6,30 +6,18 @@ module Encrubto::Affine
     
     def encrypt(plain_string, a=5, b=8)
       cipher_table = encrypt_alphabet(a, b)
-      cipher_string = plain_string.chars.map do |char|
-        if cipher_table.include?(char.downcase)
-          cipher_table[char.downcase.ord - ASCII_LOWER_A]
-        else
-          char
-        end
-      end.join('')
+      cipher_string = encode(plain_string, cipher_table)
     end
     
     def decrypt(cipher_string, a=5, b=8)
       cipher_table = decrypt_alphabet(a,b)
-      plain_string = cipher_string.chars.map do |char|
-        if cipher_table.include?(char.downcase)
-          cipher_table[char.downcase.ord - ASCII_LOWER_A]
-        else
-          char
-        end
-      end.join('')
+      plain_string = encode(cipher_string, cipher_table)
     end
     
       private
     
       def encrypt_alphabet(a, b)
-        a_inv = modinv(a, ALPHABET_SIZE)
+        a_inv = modular_inverse(a, ALPHABET_SIZE)
         cipher_table = []
         for i in 0..ALPHABET_SIZE-1 do
           cipher_table << (((a*i+b) % ALPHABET_SIZE) + ASCII_LOWER_A).chr
@@ -38,7 +26,7 @@ module Encrubto::Affine
       end
       
       def decrypt_alphabet(a, b)
-        a_inv = modinv(a, ALPHABET_SIZE)
+        a_inv = modular_inverse(a, ALPHABET_SIZE)
         cipher_table = []
         for i in 0..ALPHABET_SIZE-1 do
           cipher_table << (((a_inv*(i-b)) % ALPHABET_SIZE) + ASCII_LOWER_A).chr
@@ -46,7 +34,7 @@ module Encrubto::Affine
         cipher_table
       end
       
-      def modinv(a, m)
+      def modular_inverse(a, m)
         x,y, u,v = 0,1, 1,0
         while a != 0 do
           q, r = m/a, m%a
@@ -59,6 +47,16 @@ module Encrubto::Affine
         else
           modinv = x % g
         end
+      end
+
+      def encode(str, cipher_table)
+        enc_str = str.chars.map do |char|
+          if cipher_table.include?(char.downcase)
+            cipher_table[char.downcase.ord - ASCII_LOWER_A]
+          else
+            char
+          end
+        end.join('')
       end
 
   end
