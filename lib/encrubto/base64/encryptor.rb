@@ -5,13 +5,23 @@ module Encrubto::Base64
     BASE64_URL_CHARS = [*'A'..'Z', *'a'..'z', *'0'..'9', '-', '_']
     PADDING = "="
 
-    def encrypt(plain_string, is_url=false)
-      bin_array = str_to_bin(plain_string)
+    # Encodes input using Base64 encoding.
+    #
+    # @param data [String] the data to encrypt
+    # @param is_url [Boolean] whether data is url
+    # @return [String] the encoded text
+    def encrypt(data, is_url=false)
+      bin_array = to_bin(data)
       dec_array = bin_to_dec(bin_array)
       enc_str = dec_to_str(dec_array, is_url)
       pad_enc_str = add_padding(enc_str)
     end
     
+    # Decodes Base64 encoded input.
+    #
+    # @param encoded_string [String] the data to decode
+    # @param is_url [Boolean] whether encoded data is url
+    # @return [String] the decoded data
     def decrypt(encoded_string, is_url=false)
       enc_str = remove_padding(encoded_string)
       dec_array = str_to_dec(enc_str, is_url)
@@ -25,8 +35,8 @@ module Encrubto::Base64
         Hash[chars.each_with_index.collect {|v, i| [i, v]}]
       end
     
-      def str_to_bin(str)
-        bin_array = str.unpack("B*")[0].scan(/.{1,6}/)
+      def to_bin(data)
+        bin_array = data.unpack("B*")[0].scan(/.{1,6}/)
       end
 
       def bin_to_dec(bin_array)
