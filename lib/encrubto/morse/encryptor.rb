@@ -59,6 +59,10 @@ module Encrubto::Morse
 		}
 		DECODE = ENCODE.invert
 
+		# Encrypts text using Morse code.
+    #
+    # @param plain_string [String] the text to encrypt
+    # @return [String] the encoded message
 		def encrypt(plain_string)
 			cipher = plain_string.chars.map {|char| ENCODE.include?(char.upcase) ? ENCODE[char.upcase] : ""}
 			cipher_string = cipher.join(' ')
@@ -67,6 +71,10 @@ module Encrubto::Morse
 			end
 		end
 		
+		# Decrypts text in Morse code.
+    #
+    # @param cipher_string [String] the text to decrypt
+    # @return [String] the decoded message
 		def decrypt(cipher_string)
 			words = cipher_string.split("/")
 			split_words = words.map {|word| word.gsub("/", " ").split(" ")}
